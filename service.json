@@ -1,0 +1,5 @@
+{
+	"Description": "Zenoss Resource Manager",
+	"Name": "Zenoss",
+	"Launch": "auto"
+}

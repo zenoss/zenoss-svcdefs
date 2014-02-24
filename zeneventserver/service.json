@@ -1,0 +1,61 @@
+{
+    "Command": "su - zenoss -c \"/opt/zenoss/bin/zeneventserver run \"",
+    "Endpoints": [
+        {
+            "Application": "mysql",
+            "PortNumber": 3306,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "memcached",
+            "PortNumber": 11211,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "redis",
+            "PortNumber": 6379,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "rabbitmq",
+            "PortNumber": 5672,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "zep",
+            "PortNumber": 8084,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+            "Application": "controlplane_consumer",
+            "PortNumber": 8444,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        }
+    ],
+    "ImageId": "zenoss/zenoss5x",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "LogConfigs": [
+        {
+            "path": "/opt/zenoss/log/zeneventserver.log",
+            "type": "zeneventserver",
+			"filters": ["zeneventserver"]
+        },
+        {
+            "path": "/opt/zenoss/log/zeneventserver-stdio*.log",
+            "type": "zeneventserver_stdio"
+        }
+    ],
+    "Name": "zeneventserver",
+    "Tags": [
+        "daemon"
+    ]
+}

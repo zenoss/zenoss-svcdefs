@@ -1,0 +1,11 @@
+{
+    "Endpoints": [],
+    "Instances": {
+        "min": 0
+    },
+    "Launch": "auto",
+    "Name": "localhost",
+    "Tags": [
+        "collector"
+    ]
+}

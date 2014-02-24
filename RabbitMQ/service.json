@@ -1,0 +1,41 @@
+{
+    "Command": "/usr/sbin/rabbitmq-server",
+    "Endpoints": [
+        {
+            "Application": "rabbitmq_admin",
+            "PortNumber": 15672,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+            "Application": "rabbitmq",
+            "PortNumber": 5672,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        }
+    ],
+    "ImageId": "zenoss/zenoss5x",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "LogConfigs": [
+        {
+            "path": "/var/log/rabbitmq/rabbit@localhost.log",
+            "type": "rabbitmq"
+        },
+        {
+            "path": "/var/log/rabbitmq/rabbit@localhost-sasl.log",
+            "type": "rabbitmq_sasl"
+        }
+    ],
+    "Name": "RabbitMQ",
+    "Services": [],
+    "Snapshot": {
+        "Pause":  "PAUSE_CHECK_TIMEOUT=60 ${ZENHOME:-/opt/zenoss}/bin/quiesce-rabbitmq.sh status",
+        "Resume": "${ZENHOME:-/opt/zenoss}/bin/quiesce-rabbitmq.sh resume"
+    },
+    "Tags": [
+        "daemon"
+    ]
+}

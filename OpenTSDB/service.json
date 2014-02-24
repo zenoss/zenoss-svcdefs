@@ -1,0 +1,27 @@
+{
+    "Command": "/opt/opentsdb/build/start-opentsdb.sh",
+    "Endpoints": [
+        {
+            "Application": "opentsdb",
+            "PortNumber": 4242,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        }
+    ],
+    "ImageId": "zenoss/opentsdb",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "LogConfigs": [
+        {
+            "path": "/var/log/supervisor/opentsdb.out.log",
+            "type": "opentsdb"
+        }
+    ],
+    "Name": "OpenTSDB",
+    "Services": [],
+    "Tags": [
+        "daemon"
+    ]
+}

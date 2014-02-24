@@ -1,0 +1,45 @@
+{
+    "Command": "su - zenoss -c \"/opt/zenoss/bin/zenperfsnmp run -c --duallog \"",
+    "Endpoints": [
+        {
+            "Application": "{{(parent (parent .)).Name}}_zenhubPB",
+            "PortNumber": 8789,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "redis",
+            "PortNumber": 6379,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "controlplane_consumer",
+            "PortNumber": 8444,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        }
+    ],
+    "ImageId": "zenoss/zenoss5x",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "LogConfigs": [
+        {
+            "path": "/opt/zenoss/log/zenperfsnmp.log",
+            "type": "zenperfsnmp",
+			"LogTags": [{
+				"Name": "monitor",
+				"Value" : "{{(parent .).Name}}"
+			}],
+			"filters": ["pythondaemon"]
+        }
+    ],
+    "Name": "zenperfsnmp",
+    "Services": [],
+    "Tags": [
+        "daemon",
+        "collector"
+    ]
+}

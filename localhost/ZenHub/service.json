@@ -1,0 +1,64 @@
+{
+    "Command": "su - zenoss -c \"/opt/zenoss/bin/zenhub run --duallog\"",
+    "Endpoints": [
+        {
+            "Application": "mysql",
+            "PortNumber": 3306,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "memcached",
+            "PortNumber": 11211,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "redis",
+            "PortNumber": 6379,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "rabbitmq",
+            "PortNumber": 5672,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "{{(parent .).Name}}_zenhubPB",
+            "PortNumber": 8789,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+            "Application": "{{(parent .).Name}}_zenhubXMLRpc",
+            "PortNumber": 8781,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+            "Application": "controlplane_consumer",
+            "PortNumber": 8444,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        }
+    ],
+    "ImageId": "zenoss/zenoss5x",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "LogConfigs": [
+        {
+            "path": "/opt/zenoss/log/zenhub.log",
+            "type": "zenhub"
+        }
+    ],
+    "Name": "ZenHub",
+    "Services": [],
+    "Tags": [
+        "daemon",
+        "hub"
+    ]
+}

@@ -1,0 +1,87 @@
+{
+    "Command": "su - zenoss -c \"/opt/zenoss/bin/zopectl fg\"",
+    "Endpoints": [
+        {
+            "Application": "rabbitmq_admin",
+            "PortNumber": 15672,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "mysql",
+            "PortNumber": 3306,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "memcached",
+            "PortNumber": 11211,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "redis",
+            "PortNumber": 6379,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "rabbitmq",
+            "PortNumber": 5672,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "zep",
+            "PortNumber": 8084,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "zope",
+            "PortNumber": 9080,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+            "Application": "controlplane_consumer",
+            "PortNumber": 8444,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        }
+    ],
+    "Tasks": [
+      {
+        "Name": "zenossdbpack",
+        "Schedule": "* * * * *",
+        "Command": "zenossdbpack"
+      }
+    ],
+    "ImageId": "zenoss/zenoss5x",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "LogConfigs": [
+        {
+            "path": "/opt/zenoss/log/event.log",
+            "type": "zope_eventlog",
+			"filters": ["zope", "pythondaemon"]
+        },
+        {
+            "path": "/opt/zenoss/log/Z2.log",
+            "type": "zope_access_logs",
+			"filters": ["z2_access_logs"]
+        },
+		{
+			"path": "/opt/zenoss/log/audit.log",
+            "type": "zenossaudit",
+			"filters": ["supervisord"]
+		}
+    ],
+    "Name": "Zope",
+    "Services": [],
+    "Tags": [
+        "daemon"
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "Command": "su - zenoss -c \"/opt/zenoss/bin/zeneventd run --duallog \"",
+    "Endpoints": [
+        {
+            "Application": "mysql",
+            "PortNumber": 3306,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "memcached",
+            "PortNumber": 11211,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "redis",
+            "PortNumber": 6379,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "rabbitmq",
+            "PortNumber": 5672,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "controlplane_consumer",
+            "PortNumber": 8444,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        }
+    ],
+    "ImageId": "zenoss/zenoss5x",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "LogConfigs": [
+        {
+            "path": "/opt/zenoss/log/zeneventd.log",
+            "type": "zeneventd",
+			"filters": ["pythondaemon"]
+        }
+    ],
+    "Name": "ZenEventd",
+    "Services": [],
+    "Tags": [
+        "daemon"
+    ]
+}

@@ -1,0 +1,99 @@
+{
+    "Command": "redis-server /etc/redis.conf & su - zenoss -c \"cd /opt/zenoss && /bin/supervisord -c etc/zsupervisor.conf -n\"",
+    "Endpoints": [
+        {
+            "Application": "memcached",
+            "PortNumber": 11211,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "zope",
+            "PortNumber": 9080,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "opentsdb",
+            "PortNumber": 4242,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "metric_consumer",
+            "PortNumber": 8443,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+            "Application": "central_query",
+            "PortNumber": 8888,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+            "Application": "zproxy",
+            "PortNumber": 8080,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+            "Application": "zauth",
+            "PortNumber": 9180,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        },
+        {
+          "Application": "controlplane",
+          "PortNumber": 8787,
+          "Protocol": "tcp",
+          "Purpose": "import"
+        },
+        {
+            "Application": "redis",
+            "PortNumber": 6379,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        },
+        {
+            "Application": "controlplane_consumer",
+            "PortNumber": 8444,
+            "Protocol": "tcp",
+            "Purpose": "import"
+        }
+    ],
+    "ImageId": "zenoss/zenoss5x",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "LogConfigs": [
+        {
+            "path": "/opt/zenoss/log/supervisord.log",
+            "type": "zsupervisor",
+            "filters": ["supervisord"]
+        },
+    {
+            "path": "/opt/zenoss/log/central-query.log",
+            "type": "centralquery",
+            "filters": ["zappdaemon"]
+        },
+    {
+            "path": "/opt/zenoss/log/metric-consumer-app.log",
+            "type": "metricconsumer",
+            "filters": ["zappdaemon"]
+        },
+    {
+            "path": "/opt/zenoss/log/metricshipper.log",
+            "type": "metricshipper"
+        },
+    {
+            "path": "/opt/zenoss/log/zproxy.log",
+            "type": "zproxy"
+    }
+    ],
+    "Name": "zsupervisord",
+    "Tags": [
+        "daemon"
+    ]
+}

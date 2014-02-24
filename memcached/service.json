@@ -1,0 +1,21 @@
+{
+    "Command": "/bin/memcached -u nobody",
+    "Endpoints": [
+        {
+            "Application": "memcached",
+            "PortNumber": 11211,
+            "Protocol": "tcp",
+            "Purpose": "export"
+        }
+    ],
+    "ImageId": "zenoss/zenoss5x",
+    "Instances": {
+        "min": 1
+    },
+    "Launch": "auto",
+    "Name": "memcached",
+    "Services": [],
+    "Tags": [
+        "daemon"
+    ]
+}
